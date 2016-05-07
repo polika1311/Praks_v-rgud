@@ -37,7 +37,8 @@ $conn = new mysqli($servername, $username, $password, "test");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-echo "Connected successfully";  
+echo "Connected successfully <br>";  
+
 
 $sql = "INSERT INTO polina_kristjan_visitors_ip (visitor_ip)
 VALUES ('$aadress')";
@@ -45,21 +46,34 @@ VALUES ('$aadress')";
 
 if ($conn->query($sql) === TRUE) {
 	
-    echo "New record created successfully";
+    echo "New record created successfully <br>";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
 
+/*
+$sql = "SELECT * FROM polina_kristjan_visitors_ip WHERE visitor_ip= $aadress";
 
-$sql = "SELECT * FROM polina_kristjan_visitors_ip WHERE visitor_ip= $address";
-
-$result = mysqli_query($sql, $conn);
+$result = mysqli_query($conn, $sql);
 if (!$result) {
     die('Invalid query: ' . mysql_error());
 }
 
 echo	$result;
+*/
+$stat = "SELECT visitor_ip, count(*) FROM polina_kristjan_visitors_ip group by visitor_ip";
+$result1 = $conn->query($stat);
+
+if($result1) {
+	while($row = mysqli_fetch_assoc($result1)) {
+		//print_r($row);
+		echo "IP: " . $row["visitor_ip"] . " - Visits: " . $row["count(*)"] . "<br>";
+	}
+} else {
+	echo "No visits";
+	
+}
 
 
 $conn->close();
@@ -67,16 +81,21 @@ $conn->close();
   
  //INSERT INTO `polina_kristjan_visitors_ip`(`visitor_ip`) VALUES ()
  
- echo "Hello World";
- 
-  ?>;
-  </p>
+?>
   
-  <p>Computer Code (JavaScript)</p>
-  <p>Live Data (Files and Databases)</p>
-  <p> <?php
- echo "Tere";
-?></p>
+
+<h3>Fotod</h3>
+<div id="gallery">
+	<?php 
+		$pildid = array(
+			array("src"=> "pildid/bear.png", "alt"=>"Karu"),		
+		);
+		foreach($pildid as $id=>$pilt):?>
+		<img src="<?php echo $pilt['src'];?>" alt="<?php echo $pilt['alt'];?>"/>
+	<?php endforeach; ?>
+</div>
+
+
  </div>
 
 

@@ -1,0 +1,7 @@
+
+INSERT INTO kristiina_polina (pildi_nimi, hääled) VALUES (Karu, 0);
+INSERT INTO kristiina_polina (pildi_nimi, hääled)(Kass, 0);
+INSERT INTO kristiina_polina (pildi_nimi, hääled)(Lehm, 0);
+INSERT INTO kristiina_polina (pildi_nimi, hääled)(Koer, 0);
+INSERT INTO kristiina_polina (pildi_nimi, hääled)(Ahv, 0);
+
